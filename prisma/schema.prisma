@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int    @id @default(autoincrement())
+  email       String @unique
+  password    String
+  animeUsers  AnimeUser[] 
+
+  @@map("users")
+}
+
+model AnimeUser {
+  id        Int     @id   @default(autoincrement())
+  anime     Anime   @relation(fields: [animeId], references: [dbId])
+  animeId   Int
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@map("animesUsers")
+
+}
+
+model Anime {
+  id              Int     @id @default(autoincrement())
+  dbId            Int     @unique
+  title           String  @unique
+  averageScore    Int    
+  status          String  
+  description     String?
+  animeUsers      AnimeUser[]
+  animeStreamings AnimeStreaming[]    
+  animeGenres     AnimeGenre[]
+  images          Image[]
+  @@map("animes")
+}
+
+model Image{
+  id      Int   @id @default(autoincrement())
+  anime   Anime   @relation(fields: [animeId], references: [dbId])
+  animeId Int
+  large   String
+  medium  String?
+
+  @@map("images")
+}
+
+model Streaming{
+  id     Int     @id @default(autoincrement())
+  name   String  @unique 
+  animeStreamings AnimeStreaming[]
+
+  @@map("streamings")
+}
+
+model Genre{
+  id            Int @id @default(autoincrement())
+  name          String
+  animeGenres   AnimeGenre[]
+
+  @@map("genres")
+}
+
+model AnimeStreaming{
+  id          Int     @id @default(autoincrement())
+  anime       Anime   @relation(fields: [animeId], references: [dbId])
+  animeId     Int
+  streaming   Streaming @relation(fields: [streamingId], references: [id])
+  streamingId Int
+
+  @@map("animesStreamings")
+}
+
+model AnimeGenre{
+  id        Int   @id @default(autoincrement())
+  anime     Anime   @relation(fields: [animeId], references: [dbId])
+  animeId   Int
+  genre     Genre @relation(fields: [genreId], references: [id])
+  genreId   Int
+
+  @@map("animesGenres")
+}
