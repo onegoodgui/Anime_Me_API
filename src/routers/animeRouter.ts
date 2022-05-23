@@ -8,8 +8,8 @@ import { ensureAuthenticatedMiddleware } from "../middlewares/ensureAuthenticate
 
 const animeRouter = Router();
 
-animeRouter.get('',ensureAuthenticatedMiddleware,  getRandomAnime);
-animeRouter.post('', ensureAuthenticatedMiddleware ,validateSchemaMiddleware(animeDataSchema), insertAnime);
-animeRouter.get('animelist', ensureAuthenticatedMiddleware, getAnimeListById);
-animeRouter.put('status', ensureAuthenticatedMiddleware, updateAnimeStatus);
+animeRouter.get('/',ensureAuthenticatedMiddleware,  getRandomAnime);
+animeRouter.post('/', ensureAuthenticatedMiddleware ,validateSchemaMiddleware(animeDataSchema), insertAnime);
+animeRouter.get('/animelist', ensureAuthenticatedMiddleware, getAnimeListById);
+animeRouter.put('/status', ensureAuthenticatedMiddleware, updateAnimeStatus);
 export default animeRouter;
