@@ -49,3 +49,10 @@ export default {
   findById,
   truncate,
 };
+
+export const userServices = {
+  signUp,
+  signIn,
+  findById,
+  truncate,
+}

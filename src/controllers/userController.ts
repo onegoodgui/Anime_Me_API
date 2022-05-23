@@ -21,3 +21,8 @@ export default {
   signUp,
   signIn,
 };
+
+export const userController = {
+  signUp,
+  signIn,
+}
