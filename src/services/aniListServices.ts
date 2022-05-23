@@ -4,7 +4,7 @@ import * as aniListRepository from '../repositories/aniListRepository.js'
 export interface AnimeData {
 
     id: number;
-    title: {english: string};
+    title: {english: string, romaji: string};
     averageScore: number;
     status: "watched" | "watching" | "to_watch"
     description: string;

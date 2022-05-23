@@ -25,7 +25,8 @@ export function createGraphQLQuery(animeIdArray: number[], score: number){
             id
 
             title {
-                english
+                english,
+                romaji
             }
             genres
             coverImage{

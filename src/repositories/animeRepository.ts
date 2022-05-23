@@ -52,7 +52,7 @@ export async function insertAnime(anime: AnimeData, user: User){
                 data:{
     
                     dbId: anime.id,
-                    title:anime.title.english,
+                    title:anime.title.english ? anime.title.english : anime.title.romaji,
                     description: anime.description,
                     averageScore: anime.averageScore,
                     status: anime.status
