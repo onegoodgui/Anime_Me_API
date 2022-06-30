@@ -8,7 +8,10 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "npx dotenv -e .env.test prisma migrate dev && npx dotenv -e .env.test prisma db seed && jest --passWithNoTests --runInBand"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

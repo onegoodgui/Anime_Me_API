@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { prisma } from "../../src/config/database";
+import { prisma } from "../../src/config/database.js";
 import bcrypt from "bcrypt";
 import { User } from "@prisma/client";
 export function setNewUser() {
