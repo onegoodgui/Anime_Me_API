@@ -1,9 +1,10 @@
 import cors from "cors";
-import express from "express";
+import express, { Express } from "express";
 import "express-async-errors";
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 import router from "./routers/index.js";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
+import { connectDb, disconnectDb } from "./config/database.js";
 // import recommendationRouter from "./routers/recommendationRouter.js";
 // import testsRouter from "./routers/testsRouter.js";
 
@@ -19,5 +20,14 @@ app.use(errorHandlerMiddleware);
 //   console.log("cypress testing");
 //   app.use("/tests", testsRouter);
 // }
+
+export function init(): Promise<Express> {
+  connectDb();
+  return Promise.resolve(app);
+}
+
+export async function close(): Promise<void> {
+  await disconnectDb();
+}
 
 export default app;
