@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  anime-me:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: anime-me-back
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /usr/src/anime-me
+    command: bash -c "npx prisma generate && npm run migration:run && npm run start"
+    restart: always
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

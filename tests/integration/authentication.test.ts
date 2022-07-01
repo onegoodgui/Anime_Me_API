@@ -77,7 +77,6 @@ describe("POST - /sign-in", () => {
 
       const result = await server.post("/sign-in").send(user);
 
-      console.log(result);
       expect(result.status).toEqual(200);
     });
   });
