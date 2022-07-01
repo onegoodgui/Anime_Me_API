@@ -10,7 +10,7 @@ on:
 
 jobs:
   HerokuDeploy:
-    runs-on: ubuntu-latest
+    runs-on: anime-me
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
