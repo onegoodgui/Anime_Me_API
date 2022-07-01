@@ -3,9 +3,12 @@
     "esModuleInterop": true,
     "module": "es6",
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDirs": ["src"],
+    "baseUrl": "src"
   },
   "ts-node": {
     "esm": true
-  }
+  },
+  "include": ["src"]
 }
