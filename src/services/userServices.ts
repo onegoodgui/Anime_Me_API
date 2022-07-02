@@ -31,10 +31,10 @@ async function findById(id: number) {
 
 async function getUserOrFail(loginData: CreateUserData) {
   const user = await userRepository.findByEmail(loginData.email);
-  if (!user) throw errorTypes.unauthorizedError("Invalid credentials");
+  if (!user) throw errorTypes.unauthorizedError("User not registered");
 
   const isPasswordValid = bcrypt.compareSync(loginData.password, user.password);
-  if (!isPasswordValid) throw errorTypes.unauthorizedError("Invalid credentials");
+  if (!isPasswordValid) throw errorTypes.unauthorizedError("Invalid password");
 
   return user;
 }
