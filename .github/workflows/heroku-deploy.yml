@@ -18,8 +18,3 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           branch: "main"
-      - name: Build
-        run: docker-compose build
-
-      - name: Run
-        run: docker-compose down && docker-compose up -d
