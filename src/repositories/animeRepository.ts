@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { prisma } from "../config/database.js";
-import { CreateAnimeData, AnimeData } from "../services/aniListServices.js";
+import { AnimeData } from "../services/aniListServices.js";
 
 export async function animeListIds(userId: number) {
   const result = await prisma.anime.findMany({
