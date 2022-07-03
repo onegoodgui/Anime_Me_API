@@ -32,7 +32,6 @@ jobs:
             DATABASE_URL
           env:
             NODE_ENV: production
-            SECRET_KEY:
             JWT_SECRET: bigsecret
             POSTGRES_USERNAME: ${POSTGRES_USERNAME}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
