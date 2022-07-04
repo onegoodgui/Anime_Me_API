@@ -12,7 +12,7 @@ jobs:
     # needs: test
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci:build
+      - run: npm run ci:build
       - name: Run production migration
         run: npx prisma migrate dev
         env:
