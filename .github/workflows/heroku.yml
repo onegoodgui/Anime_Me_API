@@ -20,6 +20,7 @@ jobs:
           POSTGRES_HOST: ${POSTGRES_HOST}
           POSTGRES_PORT: ${POSTGRES_PORT}
           POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+          JWT_SECRET: ${JWT_SECRET}
       - name: Run production migration
         run: npx prisma migrate dev
 
