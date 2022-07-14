@@ -8,7 +8,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "test": "npx dotenv -e .env.test prisma migrate dev && npx dotenv -e .env.test prisma db seed && jest --passWithNoTests --runInBand"
+    "test": "npx dotenv -e .env.test prisma migrate dev && npx dotenv -e .env.test prisma db seed && jest --passWithNoTests --runInBand",
+    "ci:build": "docker-compose build"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
