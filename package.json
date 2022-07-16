@@ -8,8 +8,14 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "test": "npx dotenv -e .env.test prisma migrate dev && npx dotenv -e .env.test prisma db seed && jest --passWithNoTests --runInBand",
-    "ci:build": "docker-compose build"
+    "test": "jest --passWithNoTests --runInBand",
+    "test:load-envs": "dotenv -e .env.test",
+    "test:migration:run": "npm run test:load-envs prisma migrate deploy",
+    "test:seed": "npm run test:load-envs prisma db seed",
+    "test:compose": "docker-compose -f docker-compose-test.yml --env-file .env.test",
+    "ci:build": "docker-compose -f docker-compose-test.yml build",
+    "ci:test": "npm run test:compose -- run ",
+    "ci:teste": "npm run test:compose -- run anime-me-test bash -c 'npm run test:migration:run && npm run test:seed && npm run test'"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
