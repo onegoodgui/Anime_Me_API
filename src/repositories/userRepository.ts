@@ -4,15 +4,15 @@ import { CreateUserData } from "../services/userServices.js";
 async function findById(id: number) {
   return prisma.user.findUnique({
     where: {
-      id,
+      id: id,
     },
   });
 }
 
 async function findByEmail(email: string) {
-  return prisma.user.findUnique({
+  return prisma.user.findFirst({
     where: {
-      email,
+      email: email,
     },
   });
 }
@@ -27,9 +27,11 @@ async function truncate() {
   await prisma.$executeRaw`TRUNCATE TABLE users`;
 }
 
-export default {
+const userRepository = {
   findByEmail,
   findById,
   insert,
   truncate,
 };
+
+export default userRepository;

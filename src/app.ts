@@ -11,15 +11,6 @@ import { connectDb, disconnectDb } from "./config/database.js";
 dotenv.config();
 const app = express();
 
-const corsOptions = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ["Content-Type"],
-};
-app.use(cors(corsOptions));
-
 app.use(express.json());
 
 app.use(router);
