@@ -18,3 +18,5 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           jwt_secret: ${{secrets.JWT_SECRET}}
           branch: "main"
+      - name: Migrate DB
+        run: heroku run bash -c "npx prisma migrate deploy"
